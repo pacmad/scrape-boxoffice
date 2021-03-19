@@ -1,5 +1,6 @@
 import requests
 import datetime
+import pandas as pd
 from requests_html import HTML
 
 now = datetime.datetime.now()
@@ -40,10 +41,8 @@ if len(r_table) == 1:
 			row_data.append(col.text)
 		table_data.append(row_data)
 
-print(header_names)
-print(table_data)
+# print(header_names)
+# print(table_data)
 
-
-
-
-
+df = pd.DataFrame(table_data, columns=header_names)
+df.to_csv('movies.csv', index=False)
